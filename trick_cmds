@@ -1,0 +1,33 @@
+### Handy, Lesser-known IOS commands
+**config terminal revert timer 20** :: [reflink](https://packetpushers.net/blog/cisco-configuration-archive-rollback-using-revert-instead-of-reload/#post-3382)
+Make changes to to the config, but revert back in 20 minutes if not confirmed. Helps prevent lockout.
+
+**show ip device tracker** --or-- **show device-tracker bindings** :: [reflink](https://www.cisco.com/c/en/us/support/docs/ip/address-resolution-protocol-arp/118630-technote-ipdt-00.html)
+For switches - Find the IP address of the device that is connected to a port.
+
+**test cable-diagnostics tdr interface x/x/x** :: [reflink](https://mystajones.com/2016/05/06/cisco-3850-power-diagnostics/)
+Ex. command: **test cable-diagnostics tdr interface gigabitEthernet 1/0/1**
+Diagnosing the physical layer, e.g. length of cable pairs. Ex. Open or shorted? A good cable will show "Normal" while a faulty cable will show "Short" or "Open"
+Note: TDR works on 10/100/1000BaseTx. Fiber optic won't work. **_TenGigabitEthernet copper port DOES NOT (YET) support TDR._**
+
+**alias exec Update VLAN version 0.4 - 09SEP2024** :: 
+Make notes in the running config. This example is when I made a change to the VLAN config, using versioning, that was created on 09SEP2024. 
+
+**define interface-range**
+**define interface-range trunking gig 1/1/1**
+**define interface-range users gig 1/0/1 - 24**
+
+I will use the **define interface-range** in the active switch config so that I can make scripts for trunking ports and users ports and apply it to different switch models. Some models are 24 port. Some are 48. Some have trunking on 10GB ports. Some have it on Gig ports.
+
+When applying a script...
+
+**config t
+interface range macro trunking**
+
+(all the commands I want to apply to trunking ports)
+
+**interface range macro users**
+
+(all the commands I want to apply to user ports)
+
+**end**
