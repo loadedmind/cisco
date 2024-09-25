@@ -1,0 +1,22 @@
+1) Flash the drive, download latest version to USB thumbdrive and connect to switch
+2) With Term Emulator, issue the following commands:
+    -- show usbflash0:<ENTER>
+    Results should show the .SPA.bin file from output
+3) Remove unnecessary files with the following command:
+    -- install remove iactive
+4) Copy binary from USB flash drive to Cisco flash with command:
+    -- copy usbflash0: flash:$FILENAME
+5) Verify binary with command (Check Cisco website for md5 sum):
+    -- verify m/md5 flash:$FILENAME
+6) Enter configuration mode with command:
+    -- config t
+7) Specify conf file for boot with command:
+    -- boot system flash:packages.conf
+8) no boot manual
+9) wr mem
+10) Verify with:
+    show boot
+11) install add file flash:$FILENAME
+12) install add file flash:$FILENAME activate commit
+13) Enter y when prompted "this requires reboot"
+14) 
